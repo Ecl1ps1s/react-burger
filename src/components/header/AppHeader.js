@@ -7,39 +7,39 @@ function AppHeader() {
 
   return (
     <header className={headerStyle.header} >
-            <div className={headerStyle.container} >
-                <div className={headerStyle.logo}>
+            <section className={headerStyle.container} >
+                <nav className={headerStyle.logo}>
                     <Logo />
-                </div>
-                <nav className={headerStyle.nav}>
-                    <div className={headerStyle.navMenu}>
-                        <div className={`${headerStyle.navMenuItem} pl-5 pr-5 pb-4 pt-4`}>
-                            <div className={headerStyle.navIcon}>
-                                <BurgerIcon type="primary" />
-                            </div>
-                            <span className={`${headerStyle.navTetxt} text text_type_main-default ml-2`}>
-                                Конструктор
-                            </span>
-                        </div >
-                        <div className={`${headerStyle.navMenuItem} pl-5 pr-5 pb-4 pt-4 ml-2`}>
-                            <div className={headerStyle.navIcon}>
-                                <ListIcon type="secondary" />
-                            </div>
-                            <span className={`${headerStyle.navTetxt} text_color_inactive text text_type_main-default ml-2`}>
-                                Лента заказов
-                            </span>
-                        </div>
-                    </div>
-                    <div className={`${headerStyle.navMenuItem} pl-5 pr-5 pb-4 pt-4`}>
-                        <div className={headerStyle.navIcon}>
-                            <ProfileIcon type="secondary" />
-                        </div>
-                        <span className={`${headerStyle.navTetxt} text_color_inactive text text_type_main-default ml-2`}>
-                            Личный кабинет
-                        </span>
-                    </div>
                 </nav>
-            </div>
+                <nav className={headerStyle.nav}>
+                    <nav className={headerStyle.navMenu}>
+                        <nav className={`${headerStyle.navMenuItem} pl-5 pr-5 pb-4 pt-4`}>
+                            <nav className={headerStyle.navIcon}>
+                                <BurgerIcon type="primary" />
+                            </nav>
+                            <nav className={`${headerStyle.navTetxt} text text_type_main-default ml-2`}>
+                                Конструктор
+                            </nav>
+                        </nav >
+                        <nav className={`${headerStyle.navMenuItem} pl-5 pr-5 pb-4 pt-4 ml-2`}>
+                            <nav className={headerStyle.navIcon}>
+                                <ListIcon type="secondary" />
+                            </nav>
+                            <nav className={`${headerStyle.navTetxt} text_color_inactive text text_type_main-default ml-2`}>
+                                Лента заказов
+                            </nav>
+                        </nav>
+                    </nav>
+                    <section className={`${headerStyle.navMenuItem} pl-5 pr-5 pb-4 pt-4`}>
+                        <nav className={headerStyle.navIcon}>
+                            <ProfileIcon type="secondary" />
+                        </nav>
+                        <nav className={`${headerStyle.navTetxt} text_color_inactive text text_type_main-default ml-2`}>
+                            Личный кабинет
+                        </nav>
+                    </section>
+                </nav>
+            </section>
         </header>
     )
   

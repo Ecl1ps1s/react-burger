@@ -10,7 +10,7 @@
 
 .ingredientSubList {
     top: 200px;
-    height: calc(100% - 40px);
+    height: calc(100% - 144px);
     overflow: auto;
 }
 
@@ -29,9 +29,9 @@
 .IngredientFirstItem,
 .IngredientLastItem {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     position: relative;
-    padding-left: 69px;
+
 }
 
 .IngredientItem {
