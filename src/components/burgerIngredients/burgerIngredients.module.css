@@ -1,0 +1,49 @@
+.container {
+    max-width: 600px;
+    max-height: calc(100vh - 344px);
+}
+.tabs {
+  display: flex;
+}
+.ingredientsList {
+    height: 100%;
+    overflow: auto;
+    scrollbar-gutter: stable
+}
+.container ::-webkit-scrollbar {
+    width: 8px;
+  }
+.container ::-webkit-scrollbar-track {
+    background-color: #2F2F37;
+  }
+.container ::-webkit-scrollbar-thumb {
+    background-color: #8585AD; 
+}
+.itemList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 272px;
+  height: 208px;
+  position: relative;
+}
+.price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+
+}
+.img {
+  height: 120px;
+}
+.name {
+  height: 48px;
+  text-align: center;
+}
