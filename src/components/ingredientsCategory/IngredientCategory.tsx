@@ -1,6 +1,5 @@
-
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import burgerIngridientsStyle from "./ingredientsCategory.module.css";
+import burgerIngridientsStyle from "./ingredientCategory.module.css";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -17,8 +16,12 @@ function IngredientCategory({ type, itemsList, openDetails }: IngredientProps) {
     return (
         <div className={`${burgerIngridientsStyle.itemList} mt-6 mb-10 pl-4 pr-4`}>
             {itemsList.filter(item => item.type === type)
-                .map((data, index) => (
-                    <li className={`${burgerIngridientsStyle.card} mb-8`} key={index} onClick={clickHandler(data._id)}>
+                .map((data) => (
+                         <li
+                        className={`${burgerIngridientsStyle.card} mb-8`}
+                        key={data._id}
+                        value={data.name}
+                        onClick={clickHandler(data._id)}>
                         <Counter count={1} size="default" />
                         <img className={`${burgerIngridientsStyle.img}`} src={data.image} alt={data.name} />
                         <div className={`${burgerIngridientsStyle.price} m-1`}>
@@ -50,8 +53,7 @@ IngredientCategory.propTypes = {
         image_mobile: PropTypes.string.isRequired,
         image_large: PropTypes.string.isRequired,
         __v: PropTypes.number.isRequired
-    }).isRequired).isRequired,
-    openDetails: PropTypes.func.isRequired
+    }).isRequired).isRequired
 };
 
 export default IngredientCategory;

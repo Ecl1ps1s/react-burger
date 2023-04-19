@@ -1,6 +1,6 @@
 import BurgerIngredients from "../burgerIngredients/BurgerIngredients";
 import AppHeader from "../header/AppHeader.jsx";
-import AppStyle from "./App.module.css";
+import AppStyle from "../app/app.module.css";
 import BurgerConstructor from "../burgerCounstructor/BurgerConstructor";
 import { useCallback, useEffect, useState } from "react";
 import { URL } from "../../utils/fetch";

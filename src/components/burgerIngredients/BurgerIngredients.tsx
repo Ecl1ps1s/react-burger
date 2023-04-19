@@ -3,8 +3,7 @@ import burgerIngridientsStyle from "./burgerIngredients.module.css";
 import {
   Tab
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { items } from "../../utils/data";
-import IngredientCategory from "../../ingredientsCategory/IngredientsCategory";
+import IngredientCategory from "../ingredientsCategory/IngredientCategory";
 import PropTypes from 'prop-types';
 
 interface BurgerIngredientsProps {
