@@ -19,19 +19,13 @@ function App() {
     const [selectedID, setSelectedID] = useState("");
 
     useEffect(() => {
-        setIsLoading(true);
         fetchData();
     }, []);
-
-    const fetchData = useCallback(() => {
+    
+    const fetchData = () => {
         setIsLoading(true);
         fetch(URL)
-            .then((data) => {
-                if (data.ok) {
-                    return data.json();
-                }
-                return Promise.reject(data.status);
-            })
+            .then(checkResponse)
             .then((json) => {
                 setIsLoading(false);
                 setData(json.data);
@@ -41,7 +35,10 @@ function App() {
                 setError(true);
                 console.log(`${e.name}: ${e.message}`);
             });
-    }, [URL]);
+    };
+    const checkResponse = (res: { ok: any; json: () => Promise<any>; }) => {
+        return res.ok ? res.json() : res.json().then((err: any) => Promise.reject(err));
+      };
     const openDetails: (id: string) => void = (id) => {
         setIsDetailsOpen(true);
         setSelectedID(id);
@@ -58,18 +55,16 @@ function App() {
   return (
     <>
       <AppHeader />
-      <Modal
+      <Modal title="Детали ингредиента"
                 isModalOpen={isDetailsOpen}
-                onClose={onClose}
-                title="Детали ингредиента"
-                children={<IngredientDetails itemsList={itemsList} />}
-            />
-            <Modal 
+                onClose={onClose}>
+                <IngredientDetails itemsList={itemsList} />
+                </Modal>
+            <Modal title="Оформление заказа"
                 isModalOpen={isSuccessOpen} 
-                onClose={onClose} 
-                title="Оформление заказа"
-                children={<Order />}  
-            />
+                onClose={onClose}>
+                <Order />
+            </Modal>
       <main className={`${AppStyle.container}`}>
                 {isLoading ? (
                     <Loader />
