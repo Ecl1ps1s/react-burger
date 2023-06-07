@@ -1,21 +1,19 @@
 import style from "./modalOverlay.module.css";
 import PropTypes from 'prop-types';
 interface ModalOverlayProps {
-    isModalOpen: boolean;
     onClose: () => void;
 }
 
-function ModalOverlay({ isModalOpen, onClose }: ModalOverlayProps) {
+function ModalOverlay({ onClose }: ModalOverlayProps) {
     return (
         <div
-            className={!isModalOpen ? style.containerHidden : style.container}
+            className={style.container}
             onClick={onClose}
         ></div>
     );
 };
 
 ModalOverlay.propTypes ={
-    isModalOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired
 }
 

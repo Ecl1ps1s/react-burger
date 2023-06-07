@@ -3,9 +3,24 @@ import burgerIngridientsStyle from "./ingredientCategory.module.css";
 import PropTypes from "prop-types";
 import React from "react";
 
+type IngredientType = {
+    _id: string;
+    name: string;
+    type: string;
+    proteins: number;
+    fat: number;
+    carbohydrates: number;
+    calories: number;
+    price: number;
+    image: string;
+    image_mobile: string;
+    image_large: string;
+    v: number;
+  };
+
 interface IngredientProps {
     type: string;
-    itemsList: Array<any>;
+    itemsList: Array<IngredientType>;
     openDetails: (id: string) => void;
 }
 
