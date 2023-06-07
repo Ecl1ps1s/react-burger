@@ -5,23 +5,48 @@ import {
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorStyle from "../burgerCounstructor/burgerConstructor.module.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import Order from "../order/Order";
+import Modal from "../modal/modal";
+import { useState } from "react";
 
+type IngredientType = {
+  id: string;
+  name: string;
+  type: string;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
+  calories: number;
+  price: number;
+  image: string;
+  image_mobile: string;
+  image_large: string;
+  v: number;
+};
 interface BurgerConstructorProps {
-  data: Array<any>;
-  openOrderSuccess: () => void;
+  data: Array<IngredientType>;
 }
 
-function BurgerConstructor({ data, openOrderSuccess }: BurgerConstructorProps) {
+function BurgerConstructor({ data }: BurgerConstructorProps) {
   const bun = data.find((item) => item.type === "bun");
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const handleClickOrder = () => {
-    openOrderSuccess();
-};
+    setIsSuccessOpen(true);
+  };
+  const onClose = () => {
+    setIsSuccessOpen(false);
+  };
   return (
     <>
+      {isSuccessOpen ? (
+        <Modal title="Оформление заказа" onClose={onClose}>
+          <Order />
+        </Modal>
+      ) : null}
       <div className={`${ConstructorStyle.container}`}>
         <div className={`${ConstructorStyle.ingredientList} mt-25 mb-10`}>
-          <div className={`${ConstructorStyle.IngredientFirstItem}`}>
+          <div className={`${ConstructorStyle.ingredientFirstItem}`}>
             <ConstructorElement
               type="top"
               isLocked={true}
@@ -31,12 +56,11 @@ function BurgerConstructor({ data, openOrderSuccess }: BurgerConstructorProps) {
             />
           </div>
           <div className={`${ConstructorStyle.ingredientSubList}`}>
-            <ul>
               {data.map(
                 (item, index) =>
                   item.type !== "bun" && (
-                    <li
-                      className={`${ConstructorStyle.IngredientItem} mt-4 mb-4`}
+                    <div
+                      className={`${ConstructorStyle.ingredientItem} mt-4 mb-4`}
                       key={index}
                     >
                       <DragIcon type="primary" />
@@ -45,12 +69,11 @@ function BurgerConstructor({ data, openOrderSuccess }: BurgerConstructorProps) {
                         price={item.price}
                         thumbnail={item.image}
                       />
-                    </li>
+                    </div>
                   )
               )}
-            </ul>
           </div>
-          <div className={`${ConstructorStyle.IngredientLastItem}`}>
+          <div className={`${ConstructorStyle.ingredientLastItem}`}>
             <ConstructorElement
               type="bottom"
               isLocked={true}
@@ -70,7 +93,12 @@ function BurgerConstructor({ data, openOrderSuccess }: BurgerConstructorProps) {
             </div>
             <CurrencyIcon type="primary" />
           </div>
-          <Button htmlType='button' type="primary" size="medium" onClick={handleClickOrder}>
+          <Button
+            htmlType="button"
+            type="primary"
+            size="medium"
+            onClick={handleClickOrder}
+          >
             Оформить заказ
           </Button>
         </div>
@@ -81,23 +109,20 @@ function BurgerConstructor({ data, openOrderSuccess }: BurgerConstructorProps) {
 
 BurgerConstructor.propTypes = {
   data: PropTypes.arrayOf(
-      PropTypes.shape({
-          _id: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-          type: PropTypes.string.isRequired,
-          proteins: PropTypes.number.isRequired,
-          fat: PropTypes.number.isRequired,
-          carbohydrates: PropTypes.number.isRequired,
-          calories: PropTypes.number.isRequired,
-          price: PropTypes.number.isRequired,
-          image: PropTypes.string.isRequired,
-          image_mobile: PropTypes.string.isRequired,
-          image_large: PropTypes.string.isRequired,
-          __v: PropTypes.number.isRequired,
-      })
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      proteins: PropTypes.number.isRequired,
+      fat: PropTypes.number.isRequired,
+      carbohydrates: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+      image_mobile: PropTypes.string.isRequired,
+      image_large: PropTypes.string.isRequired,
+      __v: PropTypes.number.isRequired,
+    })
   ).isRequired,
-  openOrderSuccess: PropTypes.func.isRequired,
 };
 export default BurgerConstructor;
-
-
