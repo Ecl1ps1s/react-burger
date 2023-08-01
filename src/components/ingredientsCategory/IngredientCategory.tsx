@@ -15,7 +15,7 @@ type IngredientType = {
     image: string;
     image_mobile: string;
     image_large: string;
-    v: number;
+    __v: number;
   };
 
 interface IngredientProps {

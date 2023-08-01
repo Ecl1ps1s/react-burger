@@ -6,8 +6,24 @@ import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredientDetails/IngredientDetails";
 
+
+type BurgerIngredientsType = {
+  _id: string;
+  name: string;
+  type: string;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
+  calories: number;
+  price: number;
+  image: string;
+  image_mobile: string;
+  image_large: string;
+  __v: number;
+}
+
 interface BurgerIngredientsProps {
-  data: Array<any>;
+  data: Array<BurgerIngredientsType>;
 }
 
 function BurgerIngredients({ data }: BurgerIngredientsProps) {
@@ -22,7 +38,6 @@ function BurgerIngredients({ data }: BurgerIngredientsProps) {
     setSelectedID(id);
   };
   const itemsList = data.filter((item) => item["_id"] === selectedID)[0];
-
   const onClose = () => {
     setIsDetailsOpen(false);
   };
