@@ -1,9 +1,22 @@
 import style from "./ingredientDetails.module.css";
 import PropTypes from "prop-types";
-interface IngredientDetailsProps {
-    itemsList: any;
+type IngredientDetailsType=  {
+  _id: string;
+  name: string;
+  type: string;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
+  calories: number;
+  price: number;
+  image: string;
+  image_mobile: string;
+  image_large: string;
+  __v: number;
 }
-
+interface IngredientDetailsProps{
+    itemsList: IngredientDetailsType;
+}
 function IngredientDetails({ itemsList }: IngredientDetailsProps) {
     return (
         <div className={`${style.container}`}>

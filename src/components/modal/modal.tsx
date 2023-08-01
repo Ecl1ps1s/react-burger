@@ -8,11 +8,10 @@ import PropTypes from 'prop-types';
 interface ModalProps {
     title?: string;
     children: React.ReactNode;
-    isModalOpen: boolean;
     onClose: () => void;
 }
 
-function Modal({ title, children, isModalOpen, onClose }: ModalProps) {
+function Modal({ title, children,  onClose }: ModalProps) {
     const handleEscPress: (e: KeyboardEvent) => void = function (e) {
         if (e.key === "Escape") onClose();
     };
@@ -21,12 +20,13 @@ function Modal({ title, children, isModalOpen, onClose }: ModalProps) {
         return () => document.removeEventListener("keydown", handleEscPress);
     });
 
+    const modal = document.getElementById("modal");
     return createPortal(
         <>
-            <ModalOverlay onClose={onClose} isModalOpen={isModalOpen} />
+            <ModalOverlay onClose={onClose} />
             <div
                 className={`${
-                    !isModalOpen ? style.containerHidden : style.container
+                    style.container
                 } pl-10 pt-10 pr-10 pb-15`}
             >
                 <div className={`${style.header}`}>
@@ -40,14 +40,13 @@ function Modal({ title, children, isModalOpen, onClose }: ModalProps) {
                 {children}
             </div>
         </>,
-        document.getElementById("modal")!
+        modal!
     );
 };
 
 Modal.propTypes = {
     title: PropTypes.string, 
-    children: PropTypes.node.isRequired, 
-    isModalOpen: PropTypes.bool.isRequired,
+    children: PropTypes.node.isRequired,
     onClose: PropTypes.func.isRequired
 }
 
